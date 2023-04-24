@@ -8,12 +8,14 @@ const User = mongoose.model("User", UserSchema);
 const salt = bcrypt.genSaltSync(5);
 const secretKey = "hdjdfgkk485739dnf";
 
-//Create a new user profile
+
+
 export const createUser = (req, res) => {
   try {
     let newUser = new User(req.body);
     const hashedPassword = bcrypt.hashSync(req.body.password,salt);
     newUser.password = hashedPassword;
+    newUser.resume = req.file.path; 
     newUser.save();
     res.json({ status: "success" });
   } catch (e) {
@@ -21,6 +23,8 @@ export const createUser = (req, res) => {
     console.log(`error in user creation -> ${e}`);
   }
 };
+
+
 
 //LoginAPI for authenticating username and password
 export const userLogin = async (req, res) => {
