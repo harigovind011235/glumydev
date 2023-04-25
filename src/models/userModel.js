@@ -5,9 +5,8 @@ const Schema = mongoose.Schema;
 export const UserSchema = new Schema({
   username: { type: String, required: true, min: 4, unique: true },
   password: { type: String, required: true },
-  resume: {
-    data: Buffer,
-    contentType: String,
+  resumeFile: {
+    type: String,
   },
   firstName: {
     type: String,
@@ -43,25 +42,21 @@ export const UserSchema = new Schema({
       "None",
     ],
     default: "None",
-    required: [true, "Highest Qualification is required"],
   },
   courseStudied: {
     type: String,
     enum: ["FSD", "DSA", "ML-AI", "RPA", "ST", "CSA", "None"],
     default: "None",
-    required: [true, "Course studied at ICTAK is required"],
   },
   batchDetails: {
     type: String,
     enum: ["KKEM", "NORKA", "KDISC", "None"],
     default: "None",
-    required: [true, "Batch details is required"],
   },
   placementStatus: {
     type: String,
     enum: ["Placed", "Job-Seeking", "None"],
     default: "None",
-    required: [true, "Placement status is required"],
   },
   companyName: {
     type: String,

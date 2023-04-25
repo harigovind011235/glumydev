@@ -13,9 +13,11 @@ const secretKey = "hdjdfgkk485739dnf";
 export const createUser = (req, res) => {
   try {
     let newUser = new User(req.body);
-    const hashedPassword = bcrypt.hashSync(req.body.password,salt);
+    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
     newUser.password = hashedPassword;
-    newUser.resume = req.file.path; 
+    if (req.file) {
+      newUser.resumeFile = req.file.path;
+    }
     newUser.save();
     res.json({ status: "success" });
   } catch (e) {
