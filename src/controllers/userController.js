@@ -42,6 +42,9 @@ export const userLogin = async (req, res) => {
         })
       }
     }
+    else{
+      res.status(400).json({ "status": "No User Found" });
+    }
   } catch (e) {
     res.status(400).json({ "status": "Failed" });
     console.log(`error in user creation -> ${e}`);
