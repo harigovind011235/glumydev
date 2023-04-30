@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-import { UserSchema } from "../models/userModel";
 
-const User = mongoose.model("User", UserSchema);
+import User from '../models/userModel';
 
 const salt = bcrypt.genSaltSync(5);
 const secretKey = "hdjdfgkk485739dnf";
