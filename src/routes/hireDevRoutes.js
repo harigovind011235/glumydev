@@ -6,6 +6,7 @@ import {
   deleteUserProfile,
   userLogin
 } from "../controllers/userController";
+import { createJob,getAllJobs,updateJob,deleteJob } from '../controllers/jobsController';
 import multer from "multer";
 import path from 'path';
 import fs from 'fs';
@@ -36,7 +37,11 @@ const upload = multer({ storage });
 const routes = (app) => {
     app.route("/user").get(getAllUsers).post(upload.single("resumeFile"),createUser).put(updateUserProfile);
     app.route("/user/:id").get(getUserProfile).delete(deleteUserProfile);
-    app.route("/user/login").post(userLogin)
+    app.route("/user/login").post(userLogin),
+    app.route('/jobs/new').post(createJob),
+    app.route('/jobs').get(getAllJobs);
+    app.route('/jobs/:id').put(updateJob).delete(deleteJob);
+
   };
 
 export default routes;
