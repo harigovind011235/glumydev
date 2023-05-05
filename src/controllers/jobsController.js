@@ -94,3 +94,16 @@ export const deleteJob = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+
+
+export const getIndividualJobs = async (req,res) => {
+  const userId = req.query.postedBy;
+
+  try {
+    const jobs = await Jobs.find({ postedBy: userId });
+    res.status(200).json({"results":jobs});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
