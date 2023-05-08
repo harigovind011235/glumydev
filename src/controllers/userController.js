@@ -37,7 +37,8 @@ export const userLogin = async (req, res) => {
       if (authenticated){
         jwt.sign({username,id:userDoc._id},secretKey,{},(err,token) => {
           if (err) throw err;
-          res.status(200).json({"status":"success","token":token,"username":userDoc.username,"userType":userDoc.userType})
+          res.status(200).json({"status":"success","token":token,"username":userDoc.username,"userType":userDoc.userType,"userID":userDoc.
+          _id})
         })
       }
     }
