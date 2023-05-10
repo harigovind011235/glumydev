@@ -6,7 +6,7 @@ import {
   deleteUserProfile,
   userLogin
 } from "../controllers/userController";
-import { createJob,getAllJobs,updateJob,deleteJob,getIndividualJobs } from '../controllers/jobsController';
+import { createJob,getAllJobs,updateJob,deleteJob,getIndividualJobs,searchJob } from '../controllers/jobsController';
 import multer from "multer";
 import path from 'path';
 import fs from 'fs';
@@ -42,6 +42,7 @@ const routes = (app) => {
     app.route('/jobs').get(getAllJobs);
     app.route('/jobs/individual').get(getIndividualJobs);
     app.route('/jobs/:id').put(updateJob).delete(deleteJob);
+    app.route("/search").get(searchJob);
 
   };
 
